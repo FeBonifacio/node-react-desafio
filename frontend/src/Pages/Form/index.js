@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import './styles.css';
+
 const Form = () => {
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
@@ -21,15 +23,23 @@ const Form = () => {
                 coordenadaY,
             });
 
+            alert('Cliente criado!')
+
             console.log('Cliente criado!', response.data);
         } catch (error) {
             console.error('Erro ao criar cliente!', error);
         }
+
+        setNome('');
+        setEmail('');
+        setTelefone('');
+        setCoordenadaX('');
+        setCoordenadaY('');
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <div>
+            <div className="input-group">
                 <label htmlFor="nome">Nome</label>
                 <input
                     type="text"
@@ -38,7 +48,7 @@ const Form = () => {
                     onChange={(e) => setNome(e.target.value)}
                 />
             </div>
-            <div>
+            <div className="input-group">
                 <label htmlFor="email">Email</label>
                 <input
                     type="text"
@@ -47,7 +57,7 @@ const Form = () => {
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
-            <div>
+            <div className="input-group">
                 <label htmlFor="telefone">Telefone</label>
                 <input
                     type="text"
@@ -56,7 +66,7 @@ const Form = () => {
                     onChange={(e) => setTelefone(e.target.value)}
                 />
             </div>
-            <div>
+            <div className="input-group">
                 <label htmlFor="coordenadaX">Coordenada X</label>
                 <input
                     type="number"
@@ -65,7 +75,7 @@ const Form = () => {
                     onChange={(e) => setCoordenadaX(e.target.value)}
                 />
             </div>
-            <div>
+            <div className="input-group">
                 <label htmlFor="coordenadaY">Coordenada Y</label>
                 <input
                     type="number"
@@ -74,9 +84,12 @@ const Form = () => {
                     onChange={(e) => setCoordenadaY(e.target.value)}
                 />
             </div>
-            <button type="submit">Cadastrar</button>
+            <div className='btn-container'>
+                <button className='btn' type="submit">Cadastrar</button>
+            </div>
         </form>
     );
+    
 };
 
 export default Form;

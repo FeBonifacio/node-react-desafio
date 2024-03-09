@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Form from '../../Pages/Form';
-import Clientes from '../../Pages/Clientes';
+import Editar from '../../Pages/Editar';
+import Buscar from '../../Pages/Buscar';
+import Rota from '../../Pages/Rotas';
 import './styles.css';
 
 const Header = () => {
@@ -13,13 +15,16 @@ const Header = () => {
                 </div>
                 <div className="container-nav">
                     <Link to="/form" className="nav-link">Cadastrar</Link>
-                    <Link to="/clientes" className="nav-link">Filtrar / Editar</Link>
+                    <Link to="/buscar" className="nav-link">Clientes</Link>
+                    <Link to="/editar" className="nav-link">Editar</Link>
                     <Link to="/rota" className="nav-link">Rota</Link>
                 </div>
             </div>
                 <Routes>
                     <Route path="/form" element={<Form />} />
-                    <Route path="/clientes" element={<Clientes />} />
+                    <Route path="/editar" element={<Editar />} />
+                    <Route path="/buscar" element={<Buscar />} />
+                    <Route path="/rota" element={<Rota />} />
                     {/* Adicione mais rotas conforme necessário */}
                 </Routes>
             

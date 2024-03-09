@@ -1,0 +1,34 @@
+.input-group {
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #767272e5;
+    text-align: center;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Define a altura do contêiner para ocupar toda a altura da tela, se necessário */
+}
+
+.btn {
+    width: 200px;
+    height: 40px;
+    color: #000;
+    font-size: 16px;
+    background-color: #ffffff; 
+    border: 1px solid #000; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+.btn:hover {
+    background-color: rgb(174, 166, 166); 
+    color: #ffffff; 
+}
