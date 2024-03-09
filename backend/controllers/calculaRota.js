@@ -3,7 +3,7 @@ const pool = require('../index');
 
 async function calcularRota() {
     try {
-        const query = 'SELECT id, nome, coordenadaX, coordenadaY FROM clientes';
+        const query = 'SELECT id, nome, coordenadaX, coordenadaY FROM clientes'; //buscar
         const result = await pool.query(query);
         const coordenadasClientes = result.rows.map(cliente => ({
             id: cliente.id,
@@ -11,6 +11,8 @@ async function calcularRota() {
             coordenadax: cliente.coordenadax,
             coordenaday: cliente.coordenaday
         }));
+
+        //console.log(coordenadasClientes); //ok
 
         let rotasMaisCurtas = [];
 
@@ -20,6 +22,9 @@ async function calcularRota() {
                     coordenadasClientes[i],
                     coordenadasClientes[j]
                 );
+
+                //console.log(distancia); //OK
+
                 rotasMaisCurtas.push({
                     cliente1: {
                         id: coordenadasClientes[i].id,
@@ -31,6 +36,8 @@ async function calcularRota() {
                     },
                     distancia: distancia
                 });
+
+                //console.log(rotasMaisCurtas); ok
             }
         }
 
@@ -44,6 +51,7 @@ async function calcularRota() {
     }
 }
 
+//CALCULO DAS DISTANCIAS
 function calcularDistancia(a, b) {
     return Math.sqrt(Math.pow(a.coordenadax - b.coordenadax, 2) + Math.pow(a.coordenaday - b.coordenaday, 2));
 }
