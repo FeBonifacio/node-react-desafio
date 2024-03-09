@@ -7,19 +7,20 @@
     border-bottom: 2px solid #000;
 }
 
-.container-nav {
-    display: flex;
+.nav-link {
+    display: inline-block;
+    justify-content: space-between;
     padding: 5px;
     font-weight: bold;
-}
-
-.container-nav p {
     cursor: pointer;
     margin: 10px;
-    transition: all 0.2s;
+    transition: all 0.5s;
+    color: #000;
+    padding: 10px;
+    text-decoration: none;
 }
 
-.container-nav p:hover {
+.nav-link:hover {
     color: blue;
-    padding: 10px;
+    margin: 5px;
 }
