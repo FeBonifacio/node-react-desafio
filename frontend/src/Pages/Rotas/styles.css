@@ -1,0 +1,26 @@
+.modal-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.modal-content {
+    font-size: 20px;
+}
+
+.modal-title {
+    margin-bottom: 10px;
+}
+
+.modal-title {
+    padding: 0;
+}
+
+.modal-list-item {
+    margin-bottom: 10px;
+    list-style: none;
+}
+
+.cliente-nome {
+    font-weight: bold; 
+}

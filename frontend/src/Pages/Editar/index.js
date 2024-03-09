@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ModalCliente from '../../components/Modal'; // Certifique-se de ajustar o caminho conforme necessário
+import ModalCliente from '../../components/Modal'; 
+import './styles.css';
 
 const Clientes = () => {
     const [clientes, setClientes] = useState([]);
@@ -43,13 +44,8 @@ const Clientes = () => {
 
     return (
         <div className="clientes-container">
-            <h1>Clientes</h1>
+            <h1 className='name'>Editar Clientes</h1>
             <table className="clientes-table">
-                <thead className="clientes-table-head">
-                    <tr>
-                        <th>Nome</th>
-                    </tr>
-                </thead>
                 <tbody className="clientes-table-body">
                     {clientes.map(cliente => (
                         <tr key={cliente.id} onClick={() => abrirModal(cliente)} className="cliente-row">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './styles.css';
 
 const Rotas = () => {
     const [rotasCurtas, setRotasCurtas] = useState([]);

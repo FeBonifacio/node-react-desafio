@@ -1,0 +1,23 @@
+.clientes-container {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.filtro-input {
+    width: 40%;
+    margin: 10px;
+}
+
+.clientes-table {
+    margin: 20px;
+}
+
+.clientes-table-body {
+    font-size: 20px;
+    background-color: #716d6d;
+    color: #000;
+}
+
+.clientes-table-body td {
+    padding: 10px;
+}

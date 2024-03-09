@@ -1,0 +1,11 @@
+.name {
+    margin: 20px;
+}
+.clientes-table-body {
+    color: #fff;
+    cursor: pointer;
+
+}
+.clientes-table-body td:hover{
+    color: #000;
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './styles.css';
 
 const AllClientes = () => {
     const [clientes, setClientes] = useState([]);
@@ -31,7 +32,7 @@ const AllClientes = () => {
 
     return (
     <div className="clientes-container">
-        <h1>Clientes</h1>
+        <h1>Filtro de Clientes</h1>
         <input 
             type="text" 
             className="filtro-input" 
