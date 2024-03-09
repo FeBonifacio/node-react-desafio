@@ -1,64 +1,60 @@
 const express = require('express');
-const router = express.Router();
 const pool = require('../index');
-
-
-function calcularDistancia(a, b) {
-    const distancia = Math.sqrt(Math.pow(a[0] - b[0], 2) + Math.pow(a[1] - b[1], 2));
-    return distancia;
-}
 
 async function calcularRota() {
     try {
-        const query = 'SELECT  coordenadaX, coordenadaY FROM clientes';
+        const query = 'SELECT id, nome, coordenadaX, coordenadaY FROM clientes';
         const result = await pool.query(query);
-        const coordenadasClientes = result.rows.map(cliente => [cliente.coordenadaX, cliente.coordenadaY]);
+        const coordenadasClientes = result.rows.map(cliente => ({
+            id: cliente.id,
+            nome: cliente.nome,
+            coordenadax: cliente.coordenadax,
+            coordenaday: cliente.coordenaday
+        }));
 
-        let melhorRota = [];
-        let menorDistancia = Infinity;
+        let rotasMaisCurtas = [];
 
-        function calcularDistTotal(rota) {
-            let distanciaTotal = 0;
-            for (let i = 0; i < rota.length - 1; i++) {
-                distanciaTotal += calcularDistancia(rota[i], rota[i + 1]);
-            }
-            return distanciaTotal;
-            
-        }
-
-        function permutar(lista) {
-            if (lista.length === 0) {
-                const distancia = calcularDistTotal(melhorRota);
-                if (distancia < menorDistancia) {
-                    menorDistancia = distancia;
-                    melhorRota = lista.slice(); 
-                }
-            } else {
-                for (let i = 0; i < lista.length; i++) {
-                    const elemento = lista.splice(i, 1)[0];
-                    melhorRota.push(elemento);
-                    permutar(lista);
-                    lista.splice(i, 0, elemento);
-                    melhorRota.pop();
-                }
+        for (let i = 0; i < coordenadasClientes.length; i++) {
+            for (let j = i + 1; j < coordenadasClientes.length; j++) {
+                const distancia = calcularDistancia(
+                    coordenadasClientes[i],
+                    coordenadasClientes[j]
+                );
+                rotasMaisCurtas.push({
+                    cliente1: {
+                        id: coordenadasClientes[i].id,
+                        nome: coordenadasClientes[i].nome
+                    },
+                    cliente2: {
+                        id: coordenadasClientes[j].id,
+                        nome: coordenadasClientes[j].nome
+                    },
+                    distancia: distancia
+                });
             }
         }
 
-        permutar(coordenadasClientes);
+        rotasMaisCurtas.sort((a, b) => a.distancia - b.distancia);
 
-        return melhorRota;
+        return rotasMaisCurtas.slice(0, 4);
+
     } catch (error) {
-        console.log('Erro ao calcular rota', error);
+        console.error('Erro ao calcular rota:', error);
         throw error;
     }
+}
+
+function calcularDistancia(a, b) {
+    return Math.sqrt(Math.pow(a.coordenadax - b.coordenadax, 2) + Math.pow(a.coordenaday - b.coordenaday, 2));
 }
 
 function rotaCalculoRota() {
     return async (req, res) => {
         try {
-            const melhorRota = await calcularRota();
-            res.json({ rota: melhorRota });
+            const melhoresRotas = await calcularRota();
+            res.json({ rotasMaisCurtas: melhoresRotas });
         } catch (error) {
+            console.error('Erro ao calcular rota:', error);
             res.status(500).json({ message: 'Erro ao calcular rota' });
         }
     };
