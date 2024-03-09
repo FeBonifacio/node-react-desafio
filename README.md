@@ -1,14 +1,53 @@
-<h1>BACKEND</h1> 
-NODEJS, EXPRESS, CORS
+<h1>Sistema de Gerenciamento de Clientes</h1>
+Este é um sistema de gerenciamento de clientes desenvolvido com React no frontend e Node.js no backend. Ele permite cadastrar, buscar, editar e calcular rotas para visitar clientes.
 
-Configuração do Banco de Dados: O código começa configurando uma conexão com o banco de dados PostgreSQL. Isso é feito usando o módulo pg e criando uma instância de Pool com as credenciais de acesso ao banco de dados.
+<h2>Funcionalidades</h2>
+Cadastro de Clientes: Permite cadastrar novos clientes com nome, telefone, email e coordenadas (coordenadaX e coordenadaY).
+Busca de Clientes: Possibilita buscar clientes cadastrados.
+Edição de Clientes: Permite editar os dados de um cliente existente.
+Cálculo de Rotas: Calcula as rotas mais curtas para visitar os clientes cadastrados.
 
-Verificação da Existência da Tabela de Clientes: Após a configuração do banco de dados, o código verifica se a tabela de clientes já existe. Se não existir, ele a cria. Isso é feito executando uma consulta SQL que verifica a existência da tabela na base de dados. Se a tabela não existir, outra consulta SQL é executada para criar a tabela clientes, especificando as colunas id, nome, email, telefone, coordenadaX e coordenadaY.
+<h2>Como executar</h2>
+Configuração do Banco de Dados:
+PostgreSQL instalado.
+Crie um banco de dados chamado "clientes".
+Execute o script create_table.sql para criar a tabela necessária no banco de dados.
+Configuração do Backend:
+Navegue até a pasta backend.
+Instale as dependências com npm install.
+Configure as variáveis de ambiente no arquivo .env, se necessário.
+Inicie o servidor com npm start.
 
-Definição da Função calcularRota: A função calcularRota é definida para calcular as rotas mais curtas entre os clientes. Isso é feito consultando todas as coordenadas dos clientes no banco de dados, calculando a distância entre cada par de clientes e armazenando as rotas mais curtas em um array. As rotas são classificadas por distância e as quatro rotas mais curtas são retornadas.
+Configuração do Frontend:
+Na até a pasta frontend.
+Instale as dependências com npm install.
+Inicie a aplicação com npm start.
 
-Definição da Função rotaCalculoRota: Esta função envolve a função calcularRota e retorna uma função assíncrona que manipula uma solicitação HTTP. Quando esta rota é acessada, ela chama a função calcularRota e retorna as rotas mais curtas em formato JSON.
+Acesso à Aplicação:
+Acesse a aplicação no navegador através do endereço http://localhost:3000.
 
-Configuração do Express: O código configura um servidor Express na porta 3000. Ele define várias rotas para criar, buscar, atualizar e excluir clientes no banco de dados. Além disso, há uma rota para obter a localização de todos os clientes e uma rota para calcular as rotas mais curtas entre os clientes.
+<h2>Estrutura do Projeto</h2>
+backend: Contém o código do servidor Node.js.<br/>
+index.js: Arquivo principal do servidor.<br/>
+controllers/: Contém os controladores das rotas.<br/>
+routes/: Contém as definições das rotas da API.<br/>
+database/: Contém a configuração e scripts de banco de dados.<br/>
 
-Resumindo, este código configura um servidor Express que fornece uma API para criar, buscar, atualizar e excluir clientes no banco de dados PostgreSQL. Ele também fornece uma rota para calcular as rotas mais curtas entre os clientes com base em suas coordenadas.
+frontend: Contém o código da aplicação React.<br/>
+src/: Contém os componentes e páginas da aplicação.<br/>
+components/: Componentes reutilizáveis da aplicação.<br/>
+pages/: Páginas principais da aplicação.<br/>
+services/: Contém os serviços para fazer requisições à API.<br/>
+styles/: Arquivos de estilos da aplicação.<br/>
+
+Tecnologias Utilizadas
+Frontend:<br/>
+React<br/>
+React Router<br/>
+Axios<br/>
+<hr/>
+Backend:<br/>
+Node.js<br/>
+Express<br/>
+PostgreSQL<br/>
+pg (PostgreSQL Client for Node.js)
