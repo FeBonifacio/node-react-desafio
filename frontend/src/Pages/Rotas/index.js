@@ -36,6 +36,7 @@ const Rotas = () => {
             <h2 className="modal-title">Melhores rotas para visita</h2>
             <ul className="modal-list">
                 {rotasCurtas && rotasCurtas.map((rota, i) => (
+                    // i =1 ,2 , 3 ,4.....
                     <li key={i} className="modal-list-item">
                         Rota {i + 1}: <span className="cliente-nome">{rota.cliente1.nome}</span> - <span className="cliente-nome">{rota.cliente2.nome}</span> (Distância: {rota.distancia})
                     </li>

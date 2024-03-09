@@ -25,7 +25,6 @@ const Header = () => {
                     <Route path="/editar" element={<Editar />} />
                     <Route path="/buscar" element={<Buscar />} />
                     <Route path="/rota" element={<Rota />} />
-                    {/* Adicione mais rotas conforme necessário */}
                 </Routes>
             
         </Router>

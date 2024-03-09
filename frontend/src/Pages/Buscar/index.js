@@ -22,6 +22,7 @@ const AllClientes = () => {
     const filtrar = (cliente) => {
         const filtroLowerCase = filtro.toLowerCase();
         return (
+            // Verificacao para poder bsucar em maiusculo ou miniusculo e converter a string
             cliente.nome.toLowerCase().includes(filtroLowerCase) ||
             cliente.email.toLowerCase().includes(filtroLowerCase) ||
             cliente.telefone.includes(filtro) ||
