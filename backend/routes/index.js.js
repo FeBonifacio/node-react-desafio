@@ -1,15 +1,26 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 app.use(express.json()); // Middleware que processa o corpo da requisição em JSON
 const pool = require('../index');
+const rotaCalculoRota = require('../controllers/calculaRota'); // Importe a função que define a rota de cálculo de rota
+
+
+app.use(cors());
+
+
+// Iniciar o servidor na porta 3000
+app.listen(3000, () => {
+    console.log('Servidor rodando na porta 3000');
+});
 
 // Rota para verificar se o servidor está funcionando
 app.get('/', (req, res) => {
-    return res.json({ status: 'Funcionando!'})
+    return res.json({ status: 'Funcionando!'});
 });
 
 // Rota para criar um novo cliente
-app.post('/clientes', async (req, res) => { // Mudança de 'app' para 'server'
+app.post('/clientes', async (req, res) => { // 
     const { nome, telefone, email, coordenadaX, coordenadaY } = req.body;
 
     try {
@@ -96,7 +107,21 @@ app.delete('/clientes/:id', async (req, res) => {
     }
 });
 
-// Iniciar o servidor na porta 3000
-app.listen(3000, () => {
-    console.log('Servidor rodando na porta 3000');
+// Rota Localizar todas rotas
+app.get('/clientes/localizacao', async (req, res) => {
+    try {
+        // pegar todas as coordenadas do banco
+        const query = 'SELECT coordenadaX, coordenadaY FROM clientes';
+        const result = await pool.query(query);
+
+        const localizacao = result.rows;
+        res.json(localizacao);
+    } catch (error) {
+        console.error('Erro ao buscar a localização dos clientes', error);
+        res.status(500).json({ message: 'Erro ao buscar a localização dos clientes' });
+    }
 });
+
+// Definindo a rota para o cálculo da rota
+app.get('/rota', rotaCalculoRota());
+

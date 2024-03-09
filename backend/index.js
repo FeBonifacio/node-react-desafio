@@ -20,6 +20,7 @@ pool.query(`
     const tabelaExiste = result.rows[0].exists;
     if (!tabelaExiste) {
         // Cria a tabela de clientes se ela não existir
+        // Criei a tabela aqui para ficar facil a manutenção
         pool.query(`
             CREATE TABLE clientes (
                 id SERIAL PRIMARY KEY,
